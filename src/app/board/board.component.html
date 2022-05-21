@@ -1,0 +1,34 @@
+<div
+  cdkDropList
+  class="container-wrapper board-columns"
+  *ngIf="board"
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="dropGrid($event)"
+>
+  <div
+    cdkDragLockAxis="x"
+    class="container board-column"
+    *ngFor="let column of board.columns"
+    cdkDrag
+  >
+    <h2 cdkDragHandle>{{ column.name }}</h2>
+
+    <mat-card
+      cdkDropList
+      [id]="column.id"
+      #todoList="cdkDropList"
+      [cdkDropListData]="column?.tasks"
+      [cdkDropListConnectedTo]="getConnectedColumns(column)"
+      (cdkDropListDropped)="drop($event)"
+      class="list"
+    >
+      <p class="empty-label" *ngIf="column?.tasks?.length === 0">Empty list</p>
+      <app-task
+        (edit)="editTask(column.id, $event)"
+        *ngFor="let task of column?.tasks"
+        cdkDrag
+        [task]="task"
+      ></app-task>
+    </mat-card>
+  </div>
+</div>

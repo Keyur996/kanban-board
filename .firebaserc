@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kanban-board-99d9a": {
+      "hosting": {
+        "kanban-board": [
+          "kanban-board-99d9a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kanban-board-99d9a"
+  }
+}
